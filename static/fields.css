@@ -1,0 +1,45 @@
+/* input field styling */
+.input-group {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.input-group input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 15px;
+    border: 2px solid #bb8561;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-group input:focus {
+    border-color: #583823;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* center the form like the table */
+.author-search-form {
+    margin: 40px auto;
+    width: 50%;
+    text-align: center;
+    background-color: #f3f4f6;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}

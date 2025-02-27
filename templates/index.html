@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library DBMS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='buttons.css') }}">
+
+</head>
+<body>
+    <header>
+        <h1>Library Database Management System</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Options</h2>
+            <ul>
+                <li><a href="{{ url_for('display_books') }}" class="home-button">See All Books</a></li>
+                <li><a href="{{ url_for('display_books_by_author') }}" class="home-button">Filter books by author</a></li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

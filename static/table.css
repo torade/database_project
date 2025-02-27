@@ -1,0 +1,36 @@
+/* Center content */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f3f4f6;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Style the table */
+table {
+    border-collapse: collapse;
+    width: 80%;
+    text-align: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #bb8561;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}

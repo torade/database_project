@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books by Author</title>
+
+    <!-- Link to buttons.css and table.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fields.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    
+</head>
+<body>
+
+<!-- Form for Author Search -->
+<div class="author-search-form">
+    <h2>Find Books by Author</h2>
+    <form action="{{ url_for('display_books_by_author') }}" method="POST">
+        <div class="input-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+        </div>
+        <div class="input-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+        </div>
+        <button type="submit" class="home-button">Search</button>
+    </form>
+</div>
+
+<!-- Display Results if Available -->
+{% if books %}
+<div class="results-table">
+    <h3>Books by the specified author:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author(s)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% elif request.method == 'POST' %}
+<p>No books found for the given author.</p>
+{% endif %}
+
+<!-- Home Button -->
+<div class="button-container">
+    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+</div>
+
+</body>
+</html>
