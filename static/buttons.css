@@ -1,9 +1,11 @@
 /* button styling */
 .button-container {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    
+    /*margin-top: 20px;
+    margin-bottom: 20px;*/
+    bottom: 50px;     
+    right: 60px;
+    position: fixed;
 }
 
 .home-button {
@@ -20,8 +22,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     font-family: 'Arial', sans-serif;
     cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
 }
 
 .home-button:hover {
     background-color: #dfaf90;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

@@ -1,4 +1,4 @@
-/* input field styling */
+/* Input field styling */
 .input-group {
     margin: 20px 0;
     text-align: center;
@@ -33,7 +33,29 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* center the form like the table */
+.input-group select {
+    width: 100%;
+    max-width: 400px; 
+    padding: 12px 15px;
+    border: 2px solid #bb8561; 
+    border-radius: 8px; 
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    appearance: none; 
+    cursor: pointer;
+    text-align: center; 
+    text-align-last: center; 
+}
+.input-group select:hover, .input-group select:focus {
+    border-color: #583823;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+/* Optional: Center the form like the table */
 .author-search-form {
     margin: 40px auto;
     width: 50%;
@@ -42,4 +64,41 @@
     padding: 30px 20px;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.genre_search_form{
+    margin: 40px auto;
+    width: 50%;
+    text-align: center;
+    background-color: #f3f4f6;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.add_user_form{
+    margin: 40px auto;
+    width: 50%;
+    text-align: center;
+    background-color: #f3f4f6;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.flash-message {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
 }

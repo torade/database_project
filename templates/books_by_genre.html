@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books by Author</title>
+    <title>Books by Genre</title>
 
     
     <link rel="stylesheet" href="{{ url_for('static', filename='buttons.css') }}">
@@ -15,24 +15,28 @@
 </head>
 <body>
 
-<div class="author-search-form">
-    <h2>Find Books by Author</h2>
-    <form action="{{ url_for('display_books_by_author') }}" method="POST">
+
+<div class="genre_search_form">
+    <h2>Find Books by Genre</h2>
+    <form action="{{ url_for('display_books_by_genre') }}" method="POST">
         <div class="input-group">
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" required>
-        </div>
-        <div class="input-group">
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" required>
-        </div>
+            <label for="genre_id">Select Genre:</label>
+            <select name="genre_id" id="genre_id">
+                <option value="">-- Choose a Genre --</option>
+                    {% for genre in genres %}
+                        <option value="{{ genre[0] }}">{{ genre[1] }}</option>
+                    {% endfor %}
+            </select>
+        </div>       
+            
         <button type="submit" class="home-button">Search</button>
     </form>
 </div>
 
+
 {% if books %}
 <div class="results-table">
-    <h3>Books by the specified author:</h3>
+    <h3>Books by the specified genre:</h3>
     <table>
         <thead>
             <tr>
@@ -51,7 +55,7 @@
     </table>
 </div>
 {% elif request.method == 'POST' %}
-<p>No books found for the given author.</p>
+<p>No books found for the selected genre.</p>
 {% endif %}
 
 <div class="button-container">

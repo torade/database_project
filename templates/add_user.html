@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Books by Author</title>
+    <title>Add User</title>
 
-    
+    <!-- Link to buttons.css and table.css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='buttons.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='fields.css') }}">
@@ -15,45 +15,41 @@
 </head>
 <body>
 
-<div class="author-search-form">
-    <h2>Find Books by Author</h2>
-    <form action="{{ url_for('display_books_by_author') }}" method="POST">
+<!-- Form for Adding User-->
+<div class="add_user_form">
+    <h2>Add New User</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('add_user') }}" method="POST">
         <div class="input-group">
             <label for="first_name">First Name:</label>
             <input type="text" id="first_name" name="first_name" required>
         </div>
+
         <div class="input-group">
             <label for="last_name">Last Name:</label>
             <input type="text" id="last_name" name="last_name" required>
         </div>
-        <button type="submit" class="home-button">Search</button>
+
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" required>
+        </div>
+
+        <button type="submit" class="home-button">Add User</button>
     </form>
 </div>
-
-{% if books %}
-<div class="results-table">
-    <h3>Books by the specified author:</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author(s)</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for book in books %}
-            <tr>
-                <td>{{ book[0] }}</td>
-                <td>{{ book[1] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-{% elif request.method == 'POST' %}
-<p>No books found for the given author.</p>
-{% endif %}
-
 <div class="button-container">
     <a href="{{ url_for('home') }}" class="home-button">Back</a>
 </div>

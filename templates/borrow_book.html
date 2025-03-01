@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow a Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fields.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+<body>
+
+<div class="container">
+    <h2>Borrow a Book</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('borrow_book') }}" method="POST">
+        <div class="input-group">
+            <label for="user_id">Select User:</label>
+            <select name="user_id" id="user_id" required>
+                <option value="">-- Choose a User --</option>
+                {% for user in users %}
+                    <option value="{{ user[0] }}">{{ user[1] }} {{ user[2] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="book_id">Select Book:</label>
+            <select name="book_id" id="book_id" required>
+                <option value="">-- Choose a Book --</option>
+                {% for book in books %}
+                    <option value="{{ book[0] }}">{{ book[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="borrow-button">Borrow</button>
+    </form>
+
+    <div class="button-container">
+        <a href="{{ url_for('home') }}" class="home-button">Back</a>
+    </div>
+</div>
+
+</body>
+</html>
