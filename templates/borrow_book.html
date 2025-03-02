@@ -12,8 +12,8 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Borrow a Book</h2>
+<div class="add_user_form">
+    <h2>Borrow a book</h2>
 
     <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -26,26 +26,16 @@
 
     <form action="{{ url_for('borrow_book') }}" method="POST">
         <div class="input-group">
-            <label for="user_id">Select User:</label>
-            <select name="user_id" id="user_id" required>
-                <option value="">-- Choose a User --</option>
-                {% for user in users %}
-                    <option value="{{ user[0] }}">{{ user[1] }} {{ user[2] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label for="book_id">Select Book:</label>
-            <select name="book_id" id="book_id" required>
-                <option value="">-- Choose a Book --</option>
-                {% for book in books %}
-                    <option value="{{ book[0] }}">{{ book[1] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <button type="submit" class="borrow-button">Borrow</button>
+            <div class="input-group">
+                <label for="user_id">Enter user ID:</label>
+                <input type="text" name="user_id" id="user_id" required placeholder="e.g. 001">
+            </div>
+    
+            <div class="input-group">
+                <label for="book_title">Enter book title:</label>
+                <input type="text" name="book_title" id="book_title" required placeholder="e.g. The Great Gatsby">
+            </div>
+        <button type="submit" class="home-button">Borrow</button>
     </form>
 
     <div class="button-container">
