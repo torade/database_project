@@ -50,7 +50,7 @@ def display_books_by_author():
         except Exception as e:
             print(f"No books found for {author_first_name} {author_last_name}.") #MODIFY THIS!!!
     return render_template("books_by_author.html", books=rows)
-
+#Q3: get books by genre
 @app.route("/books_by_genre", methods=["GET", "POST"])
 def display_books_by_genre():
     genres = []
@@ -115,7 +115,7 @@ def display_users():
 
     return render_template("display_users.html", users=users)
 
-#Q6 STILL IN PROGRESS
+#Q6
 #Borrow a book
 @app.route("/borrow_book", methods=["GET", "POST"])
 def borrow_book():
@@ -131,7 +131,8 @@ def borrow_book():
         try:
             with conn.cursor() as cur:
                 # Get book_id from the title
-                cur.execute("SELECT book_id FROM BOOK WHERE title = %s;", (book_title,))
+                book_title = "%"+book_title+"%"
+                cur.execute("SELECT book_id FROM BOOK WHERE title ILIKE %s;", (book_title,)) #changed it to retrieve books even if the input is lower_case/incomplete (e.g.: "harry potter" works for retrieving "Harry Potter and the Philosopher's Stone")
                 book = cur.fetchone()
 
                 if not book:
@@ -177,6 +178,25 @@ def borrow_book():
         books = []
 
     return render_template("borrow_book.html", users=users, books=books)
+
+
+#Q7
+#display user information and book information for overdue loans / late returns (each book should be borrowed for max. 1 week/7 days)
+@app.route("/overdue")
+def overdue():
+    try:
+        cur.execute("""SELECT u.user_id,u.first_name, u.last_name, u.email, u.phone, b.title,borrow_date, return_date, (borrow_date +  INTERVAL '7 days') AS expected_return_date
+FROM LOAN l
+JOIN USERS u ON l.user_id = u.user_id
+JOIN BOOK b ON l.book_id = b.book_id
+WHERE (return_date IS NULL AND borrow_date <= CURRENT_DATE - INTERVAL '7 days')
+OR (return_date IS NOT NULL AND borrow_date <= return_date - INTERVAL '7 days')""")
+        info = cur.fetchall()
+    except Exception as e:
+        info = []
+        flash(f"Error fetching users: {str(e)}", "error")
+
+    return render_template("overdue.html", overdue_info=info)
 
 
 if __name__ == "__main__":
