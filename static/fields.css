@@ -65,6 +65,18 @@
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
+.no-books-message {
+    width: 40%;
+    margin: 40px auto; /* Centers message just like the form and table */
+    text-align: center;
+    padding: 20px;
+    background-color: #f3f4f6; /* Light red for visibility */
+    border-radius: 8px;
+    font-weight: bold;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 .genre_search_form{
     margin: 40px auto;
     width: 50%;

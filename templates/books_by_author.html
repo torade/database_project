@@ -51,7 +51,9 @@
     </table>
 </div>
 {% elif request.method == 'POST' %}
-<p>No books found for the given author.</p>
+<div class="no-books-message">
+    <p>No books found for the given author.</p>
+</div>
 {% endif %}
 
 <div class="button-container">

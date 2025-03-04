@@ -10,6 +10,20 @@ body {
 }
 
 /* Style the table */
+.results-table {
+    width: 40%;
+    margin: 40px auto 0 auto; /* Same left & right margin as the form */
+    text-align: center;
+}
+.results-table table {
+    width: 100%;
+    max-width: 800px; /* Limits excessive stretching */
+    margin: 0 auto; /* Ensures it's centered */
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
 table {
     border-collapse: collapse;
     width: 80%;
