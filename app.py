@@ -1,4 +1,6 @@
 import psycopg2
+import re
+
 conn = psycopg2.connect(database="library", user="postgres", password="Qwerty1234", host="localhost", port="5432")
 cur = conn.cursor()
 from flask import Flask, flash, render_template, request, redirect, url_for
@@ -85,6 +87,21 @@ def add_user():
         last_name = request.form["last_name"].strip()
         email = request.form["email"].strip()
         phone = request.form["phone"].strip()
+
+        sql_injection_pattern = r"[;'\"]"  
+           
+        if re.search(sql_injection_pattern, first_name):
+            flash("Invalid input in FIRST NAME! Please avoid special characters.", "error")
+            return redirect(url_for("add_user"))
+
+        if re.search(sql_injection_pattern, last_name):
+            flash("Invalid input in LAST NAME! Please avoid special characters.", "error")
+            return redirect(url_for("add_user"))
+
+        if re.search(sql_injection_pattern, phone):
+            flash("Invalid input in PHONE NUMBER! Please avoid special characters.", "error")
+            return redirect(url_for("add_user"))
+
 
         if not first_name or not last_name or not email or not phone:
             flash("All fields are required!", "error")
